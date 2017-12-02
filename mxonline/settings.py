@@ -23,6 +23,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '9&0v-wjxr+$dopv^0_%$1$04b9gs$y14&g7!8eysqld-(4p+ja'
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
+sys.path.insert(0, os.path.join(BASE_DIR, 'extend_admin'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
