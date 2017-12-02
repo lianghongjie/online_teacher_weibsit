@@ -41,6 +41,9 @@ class EmailCode(models.Model):
         verbose_name = u'邮箱验证码'
         verbose_name_plural = verbose_name
 
+    def __unicode__(self):
+        return self.email
+
 
 class Banner(models.Model):
     index = models.IntegerField(verbose_name=u'序号')
