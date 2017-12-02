@@ -22,6 +22,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '9&0v-wjxr+$dopv^0_%$1$04b9gs$y14&g7!8eysqld-(4p+ja'
+sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -32,7 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'users.apps.UsersConfig',
+    # 'users.apps.UsersConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,7 +45,7 @@ INSTALLED_APPS = [
     'courses',
     'operation',
     'xadmin',
-    'crispy-forms'
+    'crispy_forms',
 ]
 AUTH_USER_MODEL = 'users.UserWrapper'
 
