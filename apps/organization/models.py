@@ -33,6 +33,12 @@ class CourseOrganization(models.Model):
         verbose_name = u'课程机构'
         verbose_name_plural = verbose_name
 
+<<<<<<< HEAD
+=======
+    def __unicode__(self):
+        return self.name
+
+>>>>>>> lianghj
 
 class Teacher(models.Model):
     name = models.CharField(max_length=50, verbose_name=u'教师姓名')
@@ -50,3 +56,9 @@ class Teacher(models.Model):
         verbose_name = u'教师'
         verbose_name_plural = verbose_name
 
+<<<<<<< HEAD
+=======
+    def __unicode__(self):
+        return self.name
+
+>>>>>>> lianghj
