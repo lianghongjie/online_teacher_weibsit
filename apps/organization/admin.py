@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
@@ -21,7 +20,6 @@ class CourseOrganizationAdmin(admin.ModelAdmin):
 admin.site.register(City, CityAdmin)
 admin.site.register(Teacher, TeacherAdmin)
 admin.site.register(CourseOrganization, CourseOrganizationAdmin)
-=======
 # # -*- coding: utf-8 -*-
 # from __future__ import unicode_literals
 #
@@ -44,4 +42,3 @@ admin.site.register(CourseOrganization, CourseOrganizationAdmin)
 # admin.site.register(City, CityAdmin)
 # admin.site.register(Teacher, TeacherAdmin)
 # admin.site.register(CourseOrganization, CourseOrganizationAdmin)
->>>>>>> lianghj
