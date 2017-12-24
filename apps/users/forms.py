@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 
 from django import forms
 from captcha.fields import CaptchaField
+import django
 
 
 class LoginForms(forms.Form):
@@ -17,4 +18,14 @@ class RegisterForms(forms.Form):
     email = forms.EmailField(required=True)
     password = forms.CharField(required=True, max_length=5)
     captcha = CaptchaField(error_messages={'invalid': '验证码错误'})
+
+
+class ForgetForms(forms.Form):
+    email = forms.EmailField(required=True)
+    captcha = CaptchaField(error_messages={'invalid': '验证码错误'})
+
+
+class ModifyPassword(django.forms.Form):
+    password = django.forms.CharField(max_length=128)
+    password2 = django.forms.CharField(max_length=128)
 

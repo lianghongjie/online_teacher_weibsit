@@ -27,6 +27,14 @@ def send_email_code(email, type_='register'):
     if send_status:
         pass
 
+    elif type_ == 'forget':
+        email_title = '慕课在线找回密码'
+        email_body = '欢迎使用慕课在线网找回密码请点击下面链接\nhttp://127.0.0.1:8000/forget_password/{0}'.format(code)
+
+    send_status = send_mail(subject=email_title, message=email_body, from_email=EMAIL_FROM, recipient_list=[email, ])
+    if send_status:
+        pass
+
 
 def generate_email_code(length=16):
     lower_str = map(chr, range(97, 123))
