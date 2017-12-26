@@ -17,10 +17,15 @@ class City(models.Model):
         verbose_name = u'城市'
         verbose_name_plural = verbose_name
 
+    def __unicode__(self):
+        return self.name
+
 
 class CourseOrganization(models.Model):
     name = models.CharField(max_length=50, verbose_name=u'机构名称')
     describe = models.CharField(max_length=200, verbose_name=u'机构描述')
+    organization_type = models.CharField(max_length=20, verbose_name='机构类型', choices=(('pxjg', '培训机构'),
+                                         ('gr', '个人'), ('gx', '高校')), default='pxjg')
     click_nums = models.IntegerField(verbose_name=u'点击次数')
     fav_nums = models.IntegerField(verbose_name=u'收藏数', default=0)
     image = models.ImageField(verbose_name=u'机构图片', upload_to='organization/%Y/%m')
