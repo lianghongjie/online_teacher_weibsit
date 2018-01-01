@@ -26,5 +26,5 @@ urlpatterns = [
     url(r'^organization_list/$', OrganizationListView.as_view(), name='organization_list'),
 
     # 配置media文件路径
-    url(r'^media/(?P<path>.*)', serve, {'document_root': MEDIA_ROOT})
+    url(r'^media/(?P<path>.*)', serve, {'document_root': MEDIA_ROOT})  # 固定字段document
 ]

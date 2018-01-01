@@ -31,6 +31,7 @@ class CourseOrganization(models.Model):
     image = models.ImageField(verbose_name=u'机构图片', upload_to='organization/%Y/%m')
     address = models.CharField(max_length=200, verbose_name=u'机构地址')
     city = models.ForeignKey(City, verbose_name=u'城市')
+    study_number = models.IntegerField(default=0, verbose_name='学习人数')
     add_time = models.DateTimeField(default=datetime.now, verbose_name=u'添加时间')
 
     class Meta:
