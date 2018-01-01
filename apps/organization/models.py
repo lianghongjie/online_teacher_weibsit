@@ -34,6 +34,8 @@ class CourseOrganization(models.Model):
     study_number = models.IntegerField(default=0, verbose_name='学习人数')
     add_time = models.DateTimeField(default=datetime.now, verbose_name=u'添加时间')
 
+    course_number = models.IntegerField(default=0, verbose_name='课程数')
+
     class Meta:
         db_table = 'course_organization'
         verbose_name = u'课程机构'

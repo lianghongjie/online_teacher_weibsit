@@ -22,13 +22,21 @@
 				<li>
 					<h2>机构类别</h2>
 					<div class="cont">
-                        <a href="?city="><span class="active2">全部</span></a>
+                        <a href="?city={{ city_id }}"><span class="{% if org_type == '' %}
+                        active2
+                        {% endif %}">全部</span></a>
 
-                            <a href="?ct=pxjg&city="><span class="">培训机构</span></a>
+                            <a href="?org_type=pxjg&city={{ city_id }}"><span class="{% if org_type == 'pxjg' %}
+                            active2
+                            {% endif %}">培训机构</span></a>
 
-                            <a href="?ct=gx&city="><span class="">高校</span></a>
+                            <a href="?org_type=gx&city={{ city_id }}"><span class="{% if org_type == 'gx' %}
+                            active2
+                            {% endif %}">高校</span></a>
 
-                            <a href="?ct=gr&city="><span class="">个人</span></a>
+                            <a href="?org_type=gr&city={{ city_id }}"><span class="{% if org_type == 'gr' %}
+                            active2
+                            {% endif %}">个人</span></a>
 
 					</div>
 				</li>
@@ -36,9 +44,9 @@
 					<h2>所在地区</h2>
 					<div class="more">更多</div>
 					<div class="cont">
-                        <a href="?ct="><span class="{% if not city_id %}active2{% endif %}">全部</span></a>
+                        <a href="?org_type={{ org_type }}"><span class="{% if city_id == '' %}active2{% endif %}">全部</span></a>
                             {% for city in all_city %}
-                                <a href="?city={{ city.id }}"><span
+                                <a href="?city={{ city.id }}&org_type={{ org_type }}"><span
                                         class="{% ifequal city.id|stringformat:'i' city_id %}
                                         active2{% endifequal %}">{{ city }}</span></a>{# int-->string |stringformat:'i'#}
                             {% endfor %}
@@ -46,14 +54,17 @@
 				</li>
 			</ul>
 		</div>
-		<div class="all">共<span class="key">15</span>家</div>
+		<div class="all">共<span class="key">{{ org_count }}</span>家</div>
 		<div class="butler_list company list">
 		<div class="layout">
 			<div class="head">
 				<ul class="tab_header">
-					<li class="active"><a href="?ct=&city=">全部</a> </li>
-					<li class=""><a href="?sort=students&ct=&city=">学习人数 &#8595;</a></li>
-					<li class=""><a href="?sort=courses&ct=&city=">课程数 &#8595;</a></li>
+					<li class="{% if sort == '' %}active{% endif %}">
+                        <a href="?org_type={{ org_type }}&city={{ city_id }}">全部</a> </li>
+					<li class="{% if sort == 'students' %}active{% endif %}">
+                        <a href="?sort=students&org_type={{ org_type }}&city={{ city_id }}">学习人数 &#8595;</a></li>
+					<li class="{% if sort == 'courses' %}active{% endif %}">
+                        <a href="?sort=courses&org_type={{ org_type }}&city={{ city_id }}">课程数 &#8595;</a></li>
 				</ul>
 			</div>
                 {% for organization in page_obj.object_list %}
@@ -77,7 +88,7 @@
                              </a>
                         </div>
                         <ul class="cont">
-                            <li class="first"><p class="pic9">课程数：<span>1</span></p><p class="c7">学习人数：<span>{{ organization.study_number }}</span></p></li>
+                            <li class="first"><p class="pic9">课程数：<span>{{ organization.course }}</span></p><p class="c7">学习人数：<span>{{ organization.study_number }}</span></p></li>
                             <li class="c8" style="padding-left:18px;">{{ organization.address }}</li>
                             <li class="pic10" style="padding-left:18px;">经典课程：
 
@@ -140,34 +151,16 @@
 
 		<div class="right companyrank layout">
 			<div class="head">授课机构排名</div>
-
-
-                <dl class="des">
-                    <dt class="num fl">1</dt>
+                {% for hot_org in hot_orgs %}
+                    <dl class="des">
+                    <dt class="num fl">{{ forloop.counter }}</dt>
                     <dd>
-                        <a href="/company/2/"><h1>慕课网</h1></a>
-                        <p>北京市</p>
+                        <a href="/company/2/"><h1>{{ hot_org.name }}</h1></a>
+                        <p>{{ hot_org.address }}</p>
+                        <p>点击量:{{ hot_org.click_nums }}</p>
                     </dd>
                 </dl>
-
-                <dl class="des">
-                    <dt class="num fl">2</dt>
-                    <dd>
-                        <a href="/company/2/"><h1>慕课网2</h1></a>
-                        <p>深圳市</p>
-                    </dd>
-                </dl>
-
-                <dl class="des">
-                    <dt class="num fl">3</dt>
-                    <dd>
-                        <a href="/company/2/"><h1>北京大学</h1></a>
-                        <p>北京市</p>
-                    </dd>
-                </dl>
-
-
-
+                {% endfor %}
 
 		</div>
         </div>
