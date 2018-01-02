@@ -22,6 +22,7 @@ class City(models.Model):
 
 
 class CourseOrganization(models.Model):
+    # course = models.ForeignKey(Course, related_name='courses', on_delete=models.CASCADE, verbose_name='课程外键')
     name = models.CharField(max_length=50, verbose_name=u'机构名称')
     describe = models.CharField(max_length=200, verbose_name=u'机构描述')
     organization_type = models.CharField(max_length=20, verbose_name='机构类型', choices=(('pxjg', '培训机构'),
@@ -33,7 +34,6 @@ class CourseOrganization(models.Model):
     city = models.ForeignKey(City, verbose_name=u'城市')
     study_number = models.IntegerField(default=0, verbose_name='学习人数')
     add_time = models.DateTimeField(default=datetime.now, verbose_name=u'添加时间')
-
     course_number = models.IntegerField(default=0, verbose_name='课程数')
 
     class Meta:
@@ -55,6 +55,8 @@ class Teacher(models.Model):
     click_nums = models.IntegerField(verbose_name=u'点击次数', default=0)
     fav_nums = models.IntegerField(verbose_name=u'收藏数', default=0)
     organization = models.ForeignKey(CourseOrganization, verbose_name=u'所属机构')
+    image = models.ImageField(upload_to='teacher_image/%Y/%m', verbose_name='教师头像')
+    course_number = models.IntegerField(default=0, verbose_name='课程数')
 
     class Meta:
         db_table = 'teacher'

@@ -3,8 +3,66 @@ from __future__ import unicode_literals
 from django.views.generic import View
 from .models import CourseOrganization, City
 from django.shortcuts import render
-import pure_pagination
-from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
+from courses.models import Course
+from pure_pagination import Paginator, PageNotAnInteger
+
+
+class OrganizationDetailHomepageView(View):
+    def get(self, request, org_id):
+        organization = CourseOrganization.objects.get(id=org_id)
+        show_courses = organization.course_set.all()[:3]
+        show_introduce = organization.describe
+        show_teachers = organization.teacher_set.all()[:3]
+        page_type = request.GET.get('page_type', '')
+        return render(request, template_name='org-detail-homepage.html', context={
+            'org_id': org_id,
+            'organization': organization,
+            'show_courses': show_courses,
+            'show_introduce': show_introduce,
+            'show_teachers': show_teachers,
+            'page_type': page_type
+        })
+
+
+class OrganizationDetailIntroduceView(View):
+    def get(self, request, org_id):
+        organization = CourseOrganization.objects.get(id=org_id)
+        introduce = organization.describe
+        page_type = request.GET.get('page_type', '')
+        return render(request, template_name='org-detail-desc.html', context={
+            'introduce': introduce,
+            'page_type': page_type
+        })
+
+
+class OrganizationDetailCourseView(View):
+    def get(self, request, org_id):
+        organization = CourseOrganization.objects.get(id=org_id)
+        all_courses = organization.course_set.all()
+        page = request.GET.get('page', 1)
+        p = Paginator(all_courses, 1, request=request)
+        page_objs = p.page(page)
+        page_type = request.GET.get('page_type', '')
+
+        return render(request, template_name='org-detail-course.html', context={
+            'page_objs': page_objs,
+            'org_id': org_id,
+            'page_type': page_type
+        })
+
+
+class OrganizationDetailTeacherView(View):
+    def get(self, request, org_id):
+        organization = CourseOrganization.objects.get(id=org_id)
+        all_teachers = organization.teacher_set.all()
+        # page = request.GET.get('page', 1)
+        # p = Paginator(all_teachers, 1, request=request)
+        # current_page_obj = p.page(page)
+        page_type = request.GET.get('page_type', '')
+        return render(request, template_name='org-detail-teachers.html', context={
+            'all_teachers': all_teachers,
+            'page_type': page_type
+        })
 
 
 class OrganizationListView(View):

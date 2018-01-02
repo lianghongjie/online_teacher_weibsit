@@ -5,7 +5,8 @@ from django.contrib import admin
 import xadmin
 from django.views.generic import TemplateView
 from users.views import UserLoginView, RegisterView, ActiveUserView, ResetPassword, SetPasswordView, ForgetPassword
-from organization.views import OrganizationListView
+from organization.views import OrganizationListView, OrganizationDetailHomepageView, \
+    OrganizationDetailCourseView, OrganizationDetailIntroduceView, OrganizationDetailTeacherView
 from django.views.static import serve
 from settings import MEDIA_ROOT
 import captcha
@@ -24,6 +25,10 @@ urlpatterns = [
 
     # 课程机构列表
     url(r'^organization_list/$', OrganizationListView.as_view(), name='organization_list'),
+    url(r'^organization_detail_homepage/(?P<org_id>\d+)/$', OrganizationDetailHomepageView.as_view(), name='organization_detail_homepage'),
+    url(r'^organization_detail_course/(?P<org_id>\d+)/$', OrganizationDetailCourseView.as_view(), name='organization_detail_course'),
+    url(r'^organization_detail_teacher/(?P<org_id>\d+)/$', OrganizationDetailTeacherView.as_view(), name='organization_detail_teacher'),
+    url(r'^organization_detail_introduce/(?P<org_id>\d+)/$', OrganizationDetailIntroduceView.as_view(), name='organization_detail_introduce'),
 
     # 配置media文件路径
     url(r'^media/(?P<path>.*)', serve, {'document_root': MEDIA_ROOT})  # 固定字段document

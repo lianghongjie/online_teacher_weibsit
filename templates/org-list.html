@@ -70,13 +70,13 @@
                 {% for organization in page_obj.object_list %}
                     <dl class="des difdes">
                     <dt>
-                        <a href="org-detail-homepage.html">
+                        <a href="{% url 'organization_detail_homepage' organization.id %}">
                             <img width="200" height="120" class="scrollLoading" data-url="{{ MEDIA_URL }}{{ organization.image }}"/>
                         </a>
                     </dt>
                     <dd>
                         <div class="clearfix">
-                             <a href="org-detail-homepage.html">
+                             <a href="{% url 'organization_detail_homepage' organization.id %}"> {# 传递参数的方法 #}
                                  <h1>{{ organization.name }}</h1>
                                  <div class="pic fl">
 
