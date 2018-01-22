@@ -39,7 +39,7 @@
 
     <div class="middle companyheader">
         <div class="wp">
-            <img class="fl" style="width: 112px;height: 103px" src="{{ MEDIA_ROOT }}/media/org/2016/11/imooc.png"/>
+            <img class="fl" style="width: 112px;height: 103px" src="{{ MEDIA_URL }}/media/org/2016/11/imooc.png"/>
             <div class="head fl">
                 <h1>
                     慕课网
@@ -76,10 +76,14 @@
 	<div class="wp list personal_list comp">
 		<div class="left">
 			<ul>
-				<li class="{% ifequal page_type 'homeage' %}active2{% endifequal %}"><a href="{% url 'organization_detail_homepage' org_id %}?page_type=homeage">机构首页</a></li>
-                <li class="{% ifequal page_type 'course' %}active2{% endifequal %}"><a href="{% url 'organization_detail_course' org_id %}?page_type=course">机构课程</a></li>
-                <li class="{% ifequal page_type 'introdece' %}active2{% endifequal %}"><a href="{% url 'organization_detail_introduce' org_id %}?page_type=introdece">机构介绍</a></li>
-                <li class="{% ifequal page_type 'teacher' %}active2{% endifequal %}"><a href="{% url 'organization_detail_teacher' org_id %}?page_type=teacher">机构讲师</a></li>
+				<li class="{% ifequal page_type 'homeage' %}active2{% endifequal %}">
+                    <a href="{% url 'organization_detail_homepage' org_id %}?page_type=homeage">机构首页</a></li>
+                <li class="{% ifequal page_type 'course' %}active2{% endifequal %}">
+                    <a href="{% url 'organization_detail_course' org_id %}?page_type=course">机构课程</a></li>
+                <li class="{% ifequal page_type 'introdece' %}active2{% endifequal %}">
+                    <a href="{% url 'organization_detail_introduce' org_id %}?page_type=introdece">机构介绍</a></li>
+                <li class="{% ifequal page_type 'teachers' %}active2{% endifequal %}">
+                    <a href="{% url 'organization_detail_teachers' org_id %}?page_type=teachers">机构讲师</a></li>
 			</ul>
 		</div>
 {% block content %}

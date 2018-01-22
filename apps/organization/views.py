@@ -31,6 +31,7 @@ class OrganizationDetailIntroduceView(View):
         page_type = request.GET.get('page_type', '')
         return render(request, template_name='org-detail-desc.html', context={
             'introduce': introduce,
+            'org_id': org_id,
             'page_type': page_type
         })
 
@@ -43,7 +44,6 @@ class OrganizationDetailCourseView(View):
         p = Paginator(all_courses, 1, request=request)
         page_objs = p.page(page)
         page_type = request.GET.get('page_type', '')
-
         return render(request, template_name='org-detail-course.html', context={
             'page_objs': page_objs,
             'org_id': org_id,
@@ -53,15 +53,15 @@ class OrganizationDetailCourseView(View):
 
 class OrganizationDetailTeacherView(View):
     def get(self, request, org_id):
+        page_type = request.GET.get('page_type', '')
         organization = CourseOrganization.objects.get(id=org_id)
         all_teachers = organization.teacher_set.all()
-        # page = request.GET.get('page', 1)
-        # p = Paginator(all_teachers, 1, request=request)
-        # current_page_obj = p.page(page)
-        page_type = request.GET.get('page_type', '')
         return render(request, template_name='org-detail-teachers.html', context={
             'all_teachers': all_teachers,
-            'page_type': page_type
+            'org_id': org_id,       # NoReverseMatch: Reverse for 'organization_detail_homepage' with arguments '('',)'
+                                    # and keyword
+            'page_type': page_type, # arguments '{}' not found. 1 pattern(s) tried: ['organization_detail_homepage/(
+                                    # ?P<org_id>\\d+)/$'] 如果没有org_id会报错
         })
 
 

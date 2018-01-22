@@ -5,21 +5,15 @@ import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '9&0v-wjxr+$dopv^0_%$1$04b9gs$y14&g7!8eysqld-(4p+ja'
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
-sys.path.insert(0, os.path.join(BASE_DIR, 'extend_admin'))
+# sys.path.insert(0, os.path.join(BASE_DIR, 'extend_xadmin'))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -81,13 +75,19 @@ WSGI_APPLICATION = 'mxonline.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'mxonline',
-        'USER': 'root',
-        'PASSWORD': '#Ekrhy8X',
-        'HOST': '127.0.0.1',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'test.sqlite3'),
     }
 }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'mxonline',
+#         'USER': 'root',
+#         'PASSWORD': '#Ekrhy8X',
+#         'HOST': '127.0.0.1',
+#     }
+# }
 
 
 # Password validation

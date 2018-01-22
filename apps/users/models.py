@@ -6,9 +6,6 @@ from django.contrib.auth.models import AbstractUser
 import datetime
 
 
-# Create your models here.
-
-
 class UserWrapper(AbstractUser):
     nick_name = models.CharField(max_length=30, verbose_name=u'昵称')
     birthday = models.DateField(verbose_name=u'生日', null=True, blank=True)

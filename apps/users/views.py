@@ -7,6 +7,21 @@ from forms import LoginForms, RegisterForms, ForgetForms, ModifyPassword
 from .models import UserWrapper, EmailCode
 from utils.send_email import send_email_code
 from django.contrib.auth.hashers import make_password
+from users.models import Banner
+from courses.models import Course
+from organization.models import CourseOrganization
+
+
+class IndexView(View):
+    def get(self, request):
+        banners = Banner.objects.all()
+        hot_courses = Course.objects.order_by('-click_nums')[:6]
+        hot_orgs = CourseOrganization.objects.order_by('-click_nums')[:15]
+        return render(request, template_name='index.html', context={
+            'banners': banners,
+            'hot_courses': hot_courses,
+            'hot_org': hot_orgs
+        })
 
 
 class UserLoginView(View):
@@ -15,9 +30,9 @@ class UserLoginView(View):
         if login_forms.is_valid():  # 检测forms是否通过
             user_name = request.POST.get('username', '')
             pass_word = request.POST.get('password', '')
-            user_authenticate = authenticate(username=user_name, password=pass_word) # authenticate能够查询到数据中的信息
+            user_authenticate = authenticate(username=user_name, password=pass_word)  # authenticate能够查询到数据中的信息
             if user_authenticate:
-                if user_authenticate.is_active():
+                if user_authenticate.is_active:
                     login(request, user_authenticate)
                     return render(request, template_name='index.html', context={})
                 else:
@@ -122,3 +137,5 @@ class RegisterView(View):
             return render(request, template_name='login.html', context={})
         else:
             return render(request, template_name='register.html', context={'register_forms': register_forms})
+
+

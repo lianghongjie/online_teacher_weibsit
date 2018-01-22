@@ -1,7 +1,11 @@
-def test(a ,b):
-    if a and b:
-        print a, b, 123
-    else:
-        print a, b, 456
+class A(object):
+    def test(self, t):
+        print 123, t
+        print super(A, self).__init__()
 
-test(0, 1)
+
+class B(A):
+    def d(self):
+        print 242
+
+B().test("rrrr")

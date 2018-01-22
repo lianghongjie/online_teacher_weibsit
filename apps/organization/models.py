@@ -57,6 +57,7 @@ class Teacher(models.Model):
     organization = models.ForeignKey(CourseOrganization, verbose_name=u'所属机构')
     image = models.ImageField(upload_to='teacher_image/%Y/%m', verbose_name='教师头像')
     course_number = models.IntegerField(default=0, verbose_name='课程数')
+    age = models.IntegerField(default=20, verbose_name='年龄')
 
     class Meta:
         db_table = 'teacher'
@@ -65,4 +66,6 @@ class Teacher(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
 
