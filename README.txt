@@ -1,1 +1,2 @@
-This is a open source tearch project of online
+这是一个开源教育平台网站
+
